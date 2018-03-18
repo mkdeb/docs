@@ -1,0 +1,24 @@
+---
+baseURL: http://docs.mkdeb.sh/
+languageCode: en-us
+title: mkdeb
+
+params:
+  description: The Debian packaging helper
+
+menu:
+  header:
+  - name: Download
+    pre: '<span class="far fa-arrow-alt-circle-down"></span>'
+    url: https://github.com/mkdeb/mkdeb/releases
+  - name: View on Github
+    pre: '<span class="fab fa-github"></span>'
+    url: https://github.com/mkdeb/mkdeb
+
+disableKinds:
+- RSS
+enableGitInfo: true
+metaDataFormat: yaml
+publishDir: dist
+
+# vim: ts=2 sw=2 et

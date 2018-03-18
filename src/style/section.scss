@@ -1,0 +1,135 @@
+section {
+    margin: 0 18rem;
+    padding: 2rem 4rem;
+
+    h1 {
+        color: #666;
+        font-size: 1.6rem;
+        font-weight: normal;
+    }
+    
+    h2 {
+        color: #666;
+        font-size: 1.3rem;
+        font-weight: normal;
+        margin-top: 2rem;
+    }
+
+    h3 {
+        font-size: inherit;
+        font-weight: 600;
+    }
+
+    a {
+        font-weight: 600;
+        text-decoration: none;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+
+    pre,
+    code {
+        font-family: "Source Code Pro", monospace;
+    }
+
+    code {
+        background-color: #eee;
+        border-radius: 0.2rem;
+        color: #494949;
+        padding: 0 0.25rem;
+    }
+
+
+    code + strong,
+    .legend strong {
+        color: #f44336;
+    }
+
+    pre {
+        background-color: #333;
+        border-radius: 0.2rem;
+        color: #eee;
+        line-height: 1rem;
+        margin: 1rem 0;
+        overflow: auto;
+        padding: 0.25rem 0.5rem;
+        text-overflow: ellipsis;
+
+        code {
+            background-color: inherit;
+            border-radius: 0;
+            color: inherit;
+            padding: 0;
+        }
+    }
+
+    table {
+        border-spacing: 0;
+
+        th {
+            color: #494949;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        th,
+        td {
+            border-bottom: 1px solid #eee; 
+            padding: 0.25rem 1rem;
+        }
+    }
+
+    .legend {
+        margin-top: 2rem;
+    }
+
+    .note {
+        background-color: #2196f3;
+        border-radius: 0.2rem;
+        color: #fff;
+        padding: 0.5rem 1rem;
+
+        [data-icon] {
+            margin-right: 0.35rem;
+        }
+    }
+
+    .toc {
+        background-color: #f9f9f9;
+        border-radius: 0.2rem;
+        max-height: calc(100vh - 7.5rem);
+        overflow-y: auto;
+        padding: 2rem;
+        position: fixed;
+        right: 2rem;
+        top: 5.5rem;
+        width: 18rem;
+
+        h1 {
+            font-size: 1rem;
+            margin: 0 0 1rem;
+        }
+
+        ul {
+            list-style-type: square;
+            padding: 0 1rem;
+
+            a {
+                font-weight: normal;
+            }
+        }
+    }
+}
+
+@media (max-width: 800px) {
+    section {
+        padding: 1rem 2rem;
+        margin: 0;
+
+        .toc {
+            display: none;
+        }
+    }
+}

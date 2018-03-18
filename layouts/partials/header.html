@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="{{ .Lang }}">
+<head>
+	<meta charset="utf-8">
+	<title>{{ .Title }}{{ if ne .Title .Site.Title }} — {{ .Site.Title }}{{ end }}</title>{{ if .Description }}
+	<meta name="description" content="{{ .Description }}">{{end}}{{ if .Keywords }}
+	<meta name="keywords" content="{{ range $index, $keyword := .Keywords }}{{ if ne $index 0 }},{{end}}{{ $keyword }}{{ end }}">{{end}}
+	<link rel="shortcut icon" href="/assets/favicon.png">
+	<link href="/assets/style.css" rel="stylesheet">
+</head>
+<body>
+<header>
+	<a class="title" href="/">
+		<h1>{{ .Site.Title }}</h1>
+		{{ if .Site.Params.Description }}<h2>{{ .Site.Params.Description }}</h2>{{ end }}
+	</a>
+
+	<nav>
+		<ul>{{ range .Site.Menus.header }}
+			<li>
+				<a href="{{ .URL }}">{{ .Pre }} {{ .Name }}</a>
+			</li>{{ end }}
+		</ul>
+	</nav>
+</header>
+<main>
