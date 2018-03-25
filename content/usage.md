@@ -25,7 +25,7 @@ release version `1.2.3`.
 
 ## Repair local repository
 
-If the local repository is in an inconsistent state, your can force its reinitialization, by executing:
+If the local repository is in an inconsistent state, you can force its reinitialization by executing:
 
     mkdeb update --reset
 
