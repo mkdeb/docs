@@ -8,6 +8,12 @@ menu:
 
 # Recipes
 
+Packages generation is based on collection of pre-defined recipes available in a dedicated
+[Git repository][mkdeb-recipes].
+
+The recipes are simple [YAML][yaml-spec] files that may provide additional maintainers scripts and files to be appended
+to the resulting Debian package.
+
 ## Base information
 
 Recipe information consist of some base fields:
@@ -148,6 +154,8 @@ The `links` section provides a list of additional symbolic links to be part of t
 <p class="legend"><strong>*</strong> Mandatory field</p>
 
 
+[mkdeb-recipes]: https://github.com/mkdeb/recipes
+[yaml-spec]: http://yaml.org/spec/
 [debian-archs]: https://wiki.debian.org/SupportedArchitectures
 [debian-conffiles]: https://www.debian.org/doc/manuals/maint-guide/dother.en.html#conffiles
 [golang-glob]: https://golang.org/pkg/path/#Match
