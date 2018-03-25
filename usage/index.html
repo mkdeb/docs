@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Using mkdeb — mkdeb</title>
+	<meta name="description" content="Usage of mkdeb Debian packaging helper">
+	<link rel="shortcut icon" href="/assets/favicon.png">
+	<link href="/assets/style.css" rel="stylesheet">
+</head>
+<body>
+<header>
+	<a class="title" href="/">
+		<h1>mkdeb</h1>
+		<h2>The Debian packaging helper</h2>
+	</a>
+
+	<nav>
+		<ul>
+			<li>
+				<a href="https://github.com/mkdeb/mkdeb/releases"><span class="far fa-arrow-alt-circle-down"></span> Download</a>
+			</li>
+			<li>
+				<a href="https://github.com/mkdeb/mkdeb"><span class="fab fa-github"></span> View on Github</a>
+			</li>
+		</ul>
+	</nav>
+</header>
+<main>
+
+<aside>
+	<nav>
+		<ul class="menu">
+			<li class="menuitem">
+				<a href="/install/">Installation</a>
+			</li>
+			<li class="menuitem active">
+				<a href="/usage/">Using mkdeb</a>
+			</li>
+			<li class="menuitem">
+				<a href="/recipes/">Recipes</a>
+			</li>
+		</ul>
+	</nav>
+</aside>
+
+<section>
+
+<h1 id="using-mkdeb">Using mkdeb</h1>
+
+<h2 id="fetch-the-recipes">Fetch the recipes</h2>
+
+<p>To initialize or update your local recipes repository, run:</p>
+
+<pre><code>mkdeb update
+</code></pre>
+
+<h2 id="build-a-package">Build a package</h2>
+
+<p>To build a package, run:</p>
+
+<pre><code>mkdeb build foo:amd64=1.2.3
+</code></pre>
+
+<p>This command will trigger the build of the <code>foo</code> package for the desired <code>amd64</code> architecture and using upstream
+release version <code>1.2.3</code>.</p>
+
+<h2 id="repair-local-repository">Repair local repository</h2>
+
+<p>If the local repository is in an inconsistent state, your can force its reinitialization, by executing:</p>
+
+<pre><code>mkdeb update --reset
+</code></pre>
+
+<div class="note"><span class="fas fa-info-circle"></span> The existing repository local copy will be removed.</div>
+
+<div class="toc">
+<h1>Table of Contents</h1>
+<nav id="TableOfContents">
+<ul>
+<li><a href="#using-mkdeb">Using mkdeb</a>
+<ul>
+<li><a href="#fetch-the-recipes">Fetch the recipes</a></li>
+<li><a href="#build-a-package">Build a package</a></li>
+<li><a href="#repair-local-repository">Repair local repository</a></li>
+</ul></li>
+</ul>
+</nav>
+</div>
+
+</section>
+
+</main>
+<footer>
+	Last updated on 0001-01-01 00:00:00 &#43;0000 UTC
+</footer>
+<script src="/assets/vendor.js"></script>
+<script src="/assets/app.js"></script>
+</body>
+</html>
+

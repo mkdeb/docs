@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Recipes — mkdeb</title>
+	<meta name="description" content="Recipes for the Debian packaging helper">
+	<link rel="shortcut icon" href="/assets/favicon.png">
+	<link href="/assets/style.css" rel="stylesheet">
+</head>
+<body>
+<header>
+	<a class="title" href="/">
+		<h1>mkdeb</h1>
+		<h2>The Debian packaging helper</h2>
+	</a>
+
+	<nav>
+		<ul>
+			<li>
+				<a href="https://github.com/mkdeb/mkdeb/releases"><span class="far fa-arrow-alt-circle-down"></span> Download</a>
+			</li>
+			<li>
+				<a href="https://github.com/mkdeb/mkdeb"><span class="fab fa-github"></span> View on Github</a>
+			</li>
+		</ul>
+	</nav>
+</header>
+<main>
+
+<aside>
+	<nav>
+		<ul class="menu">
+			<li class="menuitem">
+				<a href="/install/">Installation</a>
+			</li>
+			<li class="menuitem">
+				<a href="/usage/">Using mkdeb</a>
+			</li>
+			<li class="menuitem active">
+				<a href="/recipes/">Recipes</a>
+			</li>
+		</ul>
+	</nav>
+</aside>
+
+<section>
+
+<h1 id="recipes">Recipes</h1>
+
+<h2 id="base-information">Base information</h2>
+
+<p>Recipe information consist of some base fields:</p>
+
+<ul>
+<li>a <code>version</code><strong>*</strong> field corresponding to the current recipe format version (should be equal to <code>1</code>)</li>
+<li>a <code>name</code><strong>*</strong> field containing the package name</li>
+<li>a <code>description</code><strong>*</strong> field containing the package short description</li>
+<li>a <code>maintainer</code><strong>*</strong> field containing the package maintainer&rsquo;s address</li>
+<li>a <code>homepage</code> field providing the upstream website address</li>
+</ul>
+
+<h3 id="example">Example</h3>
+
+<pre><code>version: 1
+name: foo
+description: a great description here
+maintainer: Foo Bar &lt;foo@example.org&gt;
+homepage: https://example.org/
+</code></pre>
+
+<h2 id="source">Source</h2>
+
+<p>The <code>source</code> section provides references to the upstream releases and parameters impacting source retrieval during the
+packaging process.</p>
+
+<p>The <code>url</code><strong>*</strong> parameter describes the pattern of the URL pointing to upstream source archive. The two
+templating variables <code>Arch</code> and <code>Version</code> can be used to point to a specific release.</p>
+
+<p>The optional <code>strip</code> parameter is an integer representing the number of leading path elements to strip upon upstream
+archive file names extraction. For example, a level of <code>1</code> will transform <code>foo-1.2.3/foo</code> to <code>foo</code>.</p>
+
+<p>The <code>arch-mapping</code> parameter maps the upstream architecture names to the ones used by <a href="https://wiki.debian.org/SupportedArchitectures">Debian</a>.</p>
+
+<h3 id="example-1">Example</h3>
+
+<pre><code>source:
+  url: https://example.org/path/to/foo-{{ .Version }}.{{ .Arch }}.tar.gz
+  strip: 1
+  arch-mapping:
+    &quot;386&quot;: i386
+    amd64: amd64
+    arm64: arm64
+    arm: armel
+</code></pre>
+
+<h2 id="control">Control</h2>
+
+<p>The <code>control</code> section provides additional data to be passed on to the Debian package control file.</p>
+
+<table>
+<thead>
+<tr>
+<th align="left">Parameter</th>
+<th align="left">Debian control field</th>
+<th align="left">Default value</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left"><code>section</code></td>
+<td align="left"><code>Section</code></td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td align="left"><code>priority</code></td>
+<td align="left"><code>Priority</code></td>
+<td align="left">extra</td>
+</tr>
+
+<tr>
+<td align="left"><code>depends</code></td>
+<td align="left"><code>Depends</code></td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td align="left"><code>pre-depends</code></td>
+<td align="left"><code>Pre-Depends</code></td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td align="left"><code>recommends</code></td>
+<td align="left"><code>Recommends</code></td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td align="left"><code>suggests</code></td>
+<td align="left"><code>Suggests</code></td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td align="left"><code>enhances</code></td>
+<td align="left"><code>Enhances</code></td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td align="left"><code>breaks</code></td>
+<td align="left"><code>Breaks</code></td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td align="left"><code>conflicts</code></td>
+<td align="left"><code>Conflicts</code></td>
+<td align="left"></td>
+</tr>
+
+<tr>
+<td align="left"><code>description</code></td>
+<td align="left"><code>Description</code></td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="example-2">Example</h3>
+
+<pre><code>control:
+  depends:
+  - bar
+  - baz (&gt;= 1.2.3)
+  description: |
+    A long package description providing us with enough information on the
+    upstream software.
+  section: utils
+</code></pre>
+
+<h2 id="install">Install</h2>
+
+<p>The <code>install</code> section provides the files installation rules for the resulting package.</p>
+
+<p>It consists of two sub-sections <code>recipe</code> and <code>upstream</code> that both defines installation rules. The <code>recipe</code> section will
+handle files present in the <code>files</code> sub-directory of the recipe, when <code>upstream</code> will match files present in the
+upstream archive.</p>
+
+<p>Each installation rule consist uses the destination path as key and may contain the following attributes:</p>
+
+<table>
+<thead>
+<tr>
+<th align="left">Name</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left"><code>conffile</code></td>
+<td align="left">Debian configuration file flag</td>
+</tr>
+
+<tr>
+<td align="left"><code>path</code></td>
+<td align="left">single file path</td>
+</tr>
+
+<tr>
+<td align="left"><code>pattern</code></td>
+<td align="left">multiple files matching pattern (see <a href="https://golang.org/pkg/path/#Match">Glob</a>)</td>
+</tr>
+
+<tr>
+<td align="left"><code>rename</code></td>
+<td align="left">file target name</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="example-3">Example</h3>
+
+<p>Given the following recipe structure:</p>
+
+<pre><code>foo/
+├── control
+│   ├── postinst
+│   └── postrm
+├── files
+│   ├── init
+└── recipe.yaml
+</code></pre>
+
+<p>And the install section:</p>
+
+<pre><code>install:
+  recipe:
+    /etc/init.d:
+    - pattern: init
+      rename: foo
+      conffile: true
+  upstream:
+    /usr/bin:
+    - pattern: foo
+</code></pre>
+
+<p>The package will contain:</p>
+
+<ul>
+<li>both files present in the <code>control</code> directory in the package control archive</li>
+<li><code>files/init</code> copied at <code>/etc/init.d/foo</code> and declared as a <a href="https://www.debian.org/doc/manuals/maint-guide/dother.en.html#conffiles">configuration file</a>.</li>
+<li><code>foo</code> present in the upstream archive copied at <code>/usr/bin/foo</code></li>
+</ul>
+
+<h2 id="directories">Directories</h2>
+
+<p>The <code>dirs</code> section provides a list of additional directories to be part of the resulting package.</p>
+
+<h3 id="example-4">Example</h3>
+
+<pre><code>dirs:
+- /path/to/dir
+</code></pre>
+
+<h2 id="links">Links</h2>
+
+<p>The <code>links</code> section provides a list of additional symbolic links to be part of the resulting package.</p>
+
+<h3 id="example-5">Example</h3>
+
+<pre><code>links:
+  /path/to/link: /path/to/target
+</code></pre>
+
+<p class="legend"><strong>*</strong> Mandatory field</p>
+
+<div class="toc">
+<h1>Table of Contents</h1>
+<nav id="TableOfContents">
+<ul>
+<li><a href="#recipes">Recipes</a>
+<ul>
+<li><a href="#base-information">Base information</a>
+<ul>
+<li><a href="#example">Example</a></li>
+</ul></li>
+<li><a href="#source">Source</a>
+<ul>
+<li><a href="#example-1">Example</a></li>
+</ul></li>
+<li><a href="#control">Control</a>
+<ul>
+<li><a href="#example-2">Example</a></li>
+</ul></li>
+<li><a href="#install">Install</a>
+<ul>
+<li><a href="#example-3">Example</a></li>
+</ul></li>
+<li><a href="#directories">Directories</a>
+<ul>
+<li><a href="#example-4">Example</a></li>
+</ul></li>
+<li><a href="#links">Links</a>
+<ul>
+<li><a href="#example-5">Example</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+</div>
+
+</section>
+
+</main>
+<footer>
+	Last updated on 0001-01-01 00:00:00 &#43;0000 UTC
+</footer>
+<script src="/assets/vendor.js"></script>
+<script src="/assets/app.js"></script>
+</body>
+</html>
+
