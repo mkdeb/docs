@@ -15,11 +15,7 @@ page on [Github][releases].
 
 ## Using Go toolchain
 
-To install mkdeb using the Go toolchain, simply run:
-
-    go get mkdeb.sh/cmd/mkdeb
-
-If you need to update an existing installation, use:
+To install or update mkdeb using the Go toolchain, simply run:
 
     go get -u mkdeb.sh/cmd/mkdeb
 
