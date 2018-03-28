@@ -60,18 +60,19 @@ The `arch-mapping` parameter maps the upstream architecture names to the ones us
 
 The `control` section provides additional data to be passed on to the Debian package control file.
 
-| Parameter     | Debian control field | Default value |
-|:--------------|:---------------------|:--------------|
-| `section`     | `Section`            |               |
-| `priority`    | `Priority`           | extra         |
-| `depends`     | `Depends`            |               |
-| `pre-depends` | `Pre-Depends`        |               |
-| `recommends`  | `Recommends`         |               |
-| `suggests`    | `Suggests`           |               |
-| `enhances`    | `Enhances`           |               |
-| `breaks`      | `Breaks`             |               |
-| `conflicts`   | `Conflicts`          |               |
-| `description` | `Description`        |               |
+| Parameter       | Description                                  | Default value  |
+|:----------------|:---------------------------------------------|:---------------|
+| `section`       | Fills the `Section` Debian control field     |                |
+| `priority`      | Fills the `Priority` Debian control field    | `extra`        |
+| `version.epoch` | Sets the Debian version epoch prefix         | `0` (no epoch) |
+| `depends`       | Fills the `Depends`  Debian control field    |                |
+| `pre-depends`   | Fills the `Pre-Depends` Debian control field |                |
+| `recommends`    | Fills the `Recommends` Debian control field  |                |
+| `suggests`      | Fills the `Suggests` Debian control field    |                |
+| `enhances`      | Fills the `Enhances` Debian control field    |                |
+| `breaks`        | Fills the `Breaks` Debian control field      |                |
+| `conflicts`     | Fills the `Conflicts` Debian control field   |                |
+| `description`   | Fills the `Description` Debian control field |                |
 
 ### Example
 
