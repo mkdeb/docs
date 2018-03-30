@@ -43,7 +43,7 @@ templating variables `Arch` and `Version` can be used to point to a specific rel
 The optional `strip` parameter is an integer representing the number of leading path elements to strip upon upstream
 archive file names extraction. For example, a level of `1` will transform `foo-1.2.3/foo` to `foo`.
 
-The `arch-mapping` parameter maps the upstream architecture names to the ones used by [Debian][debian-archs].
+The `arch-mapping` parameter maps the [Debian architecture][debian-archs] names to the ones used upstream.
 
 ### Example
 
@@ -51,10 +51,10 @@ The `arch-mapping` parameter maps the upstream architecture names to the ones us
       url: https://example.org/path/to/foo-{{ .Version }}.{{ .Arch }}.tar.gz
       strip: 1
       arch-mapping:
-        "386": i386
         amd64: amd64
         arm64: arm64
-        arm: armel
+        armel: arm
+        i386: "386"
 
 ## Control
 
