@@ -85,7 +85,7 @@ templating variables <code>Arch</code> and <code>Version</code> can be used to p
 <p>The optional <code>strip</code> parameter is an integer representing the number of leading path elements to strip upon upstream
 archive file names extraction. For example, a level of <code>1</code> will transform <code>foo-1.2.3/foo</code> to <code>foo</code>.</p>
 
-<p>The <code>arch-mapping</code> parameter maps the upstream architecture names to the ones used by <a href="https://wiki.debian.org/SupportedArchitectures">Debian</a>.</p>
+<p>The <code>arch-mapping</code> parameter maps the <a href="https://wiki.debian.org/SupportedArchitectures">Debian architecture</a> names to the ones used upstream.</p>
 
 <h3 id="example-1">Example</h3>
 
@@ -93,10 +93,10 @@ archive file names extraction. For example, a level of <code>1</code> will trans
   url: https://example.org/path/to/foo-{{ .Version }}.{{ .Arch }}.tar.gz
   strip: 1
   arch-mapping:
-    &quot;386&quot;: i386
     amd64: amd64
     arm64: arm64
-    arm: armel
+    armel: arm
+    i386: &quot;386&quot;
 </code></pre>
 
 <h2 id="control">Control</h2>
@@ -329,7 +329,7 @@ upstream archive.</p>
 
 </main>
 <footer>
-	Last updated on 2018-03-28 08:57:58 &#43;0200 CEST
+	Last updated on 2018-03-30 07:00:50 &#43;0200 CEST
 </footer>
 <script src="/assets/vendor.js"></script>
 <script src="/assets/app.js"></script>
