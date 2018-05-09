@@ -27,6 +27,6 @@ release version `1.2.3`.
 
 If the local repository is in an inconsistent state, you can force its reinitialization by executing:
 
-    mkdeb update --reset
+    mkdeb update --force
 
 <div class="note"><span class="fas fa-info-circle"></span> The existing repository local copy will be removed.</div>
