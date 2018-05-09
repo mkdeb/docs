@@ -2,7 +2,7 @@
 /******/ 	// install a JSONP callback for chunk loading
 /******/ 	function webpackJsonpCallback(data) {
 /******/ 		var chunkIds = data[0];
-/******/ 		var moreModules = data[1]
+/******/ 		var moreModules = data[1];
 /******/ 		var executeModules = data[2];
 /******/ 		// add "moreModules" to the modules object,
 /******/ 		// then flag all "chunkIds" as loaded and fire callback
@@ -34,12 +34,12 @@
 /******/ 		var result;
 /******/ 		for(var i = 0; i < deferredModules.length; i++) {
 /******/ 			var deferredModule = deferredModules[i];
-/******/ 			var fullfilled = true;
+/******/ 			var fulfilled = true;
 /******/ 			for(var j = 1; j < deferredModule.length; j++) {
 /******/ 				var depId = deferredModule[j];
-/******/ 				if(installedChunks[depId] !== 0) fullfilled = false;
+/******/ 				if(installedChunks[depId] !== 0) fulfilled = false;
 /******/ 			}
-/******/ 			if(fullfilled) {
+/******/ 			if(fulfilled) {
 /******/ 				deferredModules.splice(i--, 1);
 /******/ 				result = __webpack_require__(__webpack_require__.s = deferredModule[0]);
 /******/ 			}
@@ -51,6 +51,8 @@
 /******/ 	var installedModules = {};
 /******/
 /******/ 	// object to store loaded and loading chunks
+/******/ 	// undefined = chunk not loaded, null = chunk preloaded/prefetched
+/******/ 	// Promise = chunk loading, 0 = chunk loaded
 /******/ 	var installedChunks = {
 /******/ 		"app": 0
 /******/ 	};
